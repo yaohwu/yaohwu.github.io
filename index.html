@@ -9,22 +9,32 @@
   <meta name="keywords" content="yaohwu,yaohwu.xyz,notes">
   <title> Redirecting to https://notes.yaohwu.xyz </title>
   <script>
-    let target = "https://notes.yaohwu.xyz";
-    let map = {
-      "#/posts/4": "/2018/01/24/mock-test-1-from%20dynamic%20proxy%20to%20unit%20test/",
-      "#/posts/5": "/2018/02/03/database-change-notification/",
-      "#/posts/6": "/2018/03/27/how-to-implement-an-RPC-framework/",
-      "#/posts/7": "/2018/05/01/hibernate-demo/",
-      "#/posts/8": "/2018/06/20/from%20unit%20test%20to%20front%20end%20modularization/",
-      "#/posts/9": "/2018/08/23/low-coupling-and-high-cohesion-and-others/",
-      "#/posts/10": "/2018/09/13/web-security/",
-      "#/posts/11": "/2019/03/10/mock-test-2-easymock-powermock/",
-      "#/posts/12": "/2019/08/14/how-to-use-java-generic/",
-      "#/posts/13": "/2019/09/25/software-design/"
-    };
+    let redirector = (function () {
+      const target = "https://notes.yaohwu.xyz";
+      const map = {
+        "#/posts/4": "/2018/01/24/mock-test-1-from%20dynamic%20proxy%20to%20unit%20test/",
+        "#/posts/5": "/2018/02/03/database-change-notification/",
+        "#/posts/6": "/2018/03/27/how-to-implement-an-RPC-framework/",
+        "#/posts/7": "/2018/05/01/hibernate-demo/",
+        "#/posts/8": "/2018/06/20/from%20unit%20test%20to%20front%20end%20modularization/",
+        "#/posts/9": "/2018/08/23/low-coupling-and-high-cohesion-and-others/",
+        "#/posts/10": "/2018/09/13/web-security/",
+        "#/posts/11": "/2019/03/10/mock-test-2-easymock-powermock/",
+        "#/posts/12": "/2019/08/14/how-to-use-java-generic/",
+        "#/posts/13": "/2019/09/25/software-design/"
+      };
 
-    let source = location.hash;
-    location.replace(target + (map[source] || ""));
+      let redirect = function () {
+        let source = location.hash;
+        location.replace(target + (map[source] || ""));
+      }
+
+      return {
+        redirect: redirect
+      };
+    })();
+
+    setTimeout(redirector.redirect, 500);
   </script>
 
 </html>
